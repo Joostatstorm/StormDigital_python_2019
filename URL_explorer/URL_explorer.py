@@ -1,11 +1,51 @@
 import os
 import pandas as pd
 
-# data collection
-path="/Users/Joost/Documents/Scripts/Top_URL_Script"
-os.chdir(path)
+from tkinter import filedialog
+from tkinter import simpledialog
 
-url_list = pd.read_csv("URL_report_PL.csv", sep=";")
+from tkinter import *
+from tkinter.ttk import *
+
+window = Tk()
+
+window.title("URL explorer")
+
+window.geometry('350x200')
+
+def state():
+     print("function is called")
+
+chk_CTR_state = BooleanVar()
+chk_PVC_state = BooleanVar()
+
+chk_CTR_state.set(False)  # set check state
+chk_PVC_state.set(False)  # set check state
+
+chk_CTR = Checkbutton(window, text='CTR', var=chk_CTR_state, command=state)
+chk_PVC = Checkbutton(window, text='Post View Conversions', var=chk_PVC_state, command=state)
+
+chk_CTR.grid(column=0, row=0)
+chk_PVC.grid(column=1, row=0)
+
+print(chk_CTR_state.get())
+window.mainloop()
+
+print(chk_CTR_state.get())
+
+'''
+
+# data collection
+raw_file = filedialog.askopenfilename(initialdir = "/",
+                                                title = "Select Internal HTML file",
+                                                filetypes = (("CSV Document", '.csv'),("all files","*.*")))
+
+seperator = simpledialog.askstring("Input", "What is the seperator",
+                                    parent= application_window)
+
+url_list = pd.read_csv(raw_file, sep = seperator)
+
+
 
 print(list(url_list))
 def site_list_complete(dataframe, metric, number, url_variable):
@@ -15,4 +55,10 @@ def site_list_complete(dataframe, metric, number, url_variable):
     for i in top_observations[url_variable]:
         print(i)
 
+
 site_list_complete(url_list,'Post-View Conversions', 10, "App/URL")
+'''
+
+
+
+
