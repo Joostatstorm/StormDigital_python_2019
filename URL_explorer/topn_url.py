@@ -1,31 +1,36 @@
 import os
 import pandas as pd
-
-from tkinter import filedialog
-from tkinter import simpledialog
-
+import tkinter as tkk
 from URL_explorer import gui_widget
 
-selection_widget()
+from tkinter import simpledialog
+
 
 #def metric_selection():
 
 #print(chk_CTR_state.get())
 #print(chk_PVC_state.get())
-
+'''
 # data collection
-raw_file = filedialog.askopenfilename(initialdir = "/",
+raw_file = tkk.filedialog.askopenfilename(initialdir = "/",
                                                 title = "Select Internal HTML file",
                                                 filetypes = (("CSV Document", '.csv'),("all files","*.*")))
 
-seperator = simpledialog.askstring("Input", "What is the seperator",
-                                    parent= application_window)
+#seperator = simpledialog.askstring("Input", "What is the seperator",
+#                                    parent= application_window)
+'''
+#url_list = pd.read_csv(raw_file, sep = ";")
 
-url_list = pd.read_csv(raw_file, sep = seperator)
 
 
+#print(list(url_list))
 
-print(list(url_list))
+
+# Start the GUI event loop
+gui_widget.selection_widget()
+
+
+''' ### functie ombouwen zodat die meerder metrics kan handelen.
 def site_list_complete(dataframe, metric, number, url_variable):
 
     top_observations = dataframe.nlargest(number, metric)
@@ -35,7 +40,7 @@ def site_list_complete(dataframe, metric, number, url_variable):
 
 
 site_list_complete(url_list,'Post-View Conversions', 10, "App/URL")
-
+'''
 
 
 
