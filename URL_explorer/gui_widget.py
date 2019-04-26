@@ -1,6 +1,6 @@
 import tkinter as tkk
 
-class selection_widget():
+class Selection_widget():
     #set window
     def __init__(self):
         self.window = tkk.Tk()
@@ -28,14 +28,14 @@ class selection_widget():
         self.label_metric_ranking = tkk.Label(text="Select the label you wish to rank by", relief=tkk.RIDGE).grid(column=0, row=2)
 
         #generate radiobuttons per metric
-        self.metric_selection= tkk.IntVar()
-        self.radio_imp = tkk.Radiobutton(self.window, text="Impression", variable=self.metric_selection, value=1)
-        self.radio_clicks = tkk.Radiobutton(self.window, text="Clicks", variable=self.metric_selection, value=2)
-        self.radio_CTR = tkk.Radiobutton(self.window, text="CTR", variable=self.metric_selection, value=3)
-        self.radio_totconv = tkk.Radiobutton(self.window, text="Total conversions", variable=self.metric_selection, value=4)
-        self.radio_viewconv = tkk.Radiobutton(self.window, text="Post-view Conversions", variable=self.metric_selection, value=5)
-        self.radio_clickconv = tkk.Radiobutton(self.window, text="Post-click Conversions", variable=self.metric_selection, value=6)
-        self.radio_rev = tkk.Radiobutton(self.window, text="Revenue", variable=self.metric_selection, value=7)
+        self.metric_selection = tkk.StringVar()
+        self.radio_imp = tkk.Radiobutton(self.window, text="Impression", variable=self.metric_selection, value="Impression")
+        self.radio_clicks = tkk.Radiobutton(self.window, text="Clicks", variable=self.metric_selection, value="Clicks")
+        self.radio_CTR = tkk.Radiobutton(self.window, text="CTR", variable=self.metric_selection, value="CTR")
+        self.radio_totconv = tkk.Radiobutton(self.window, text="Total conversions", variable=self.metric_selection, value="Total conversion")
+        self.radio_viewconv = tkk.Radiobutton(self.window, text="Post-view Conversions", variable=self.metric_selection, value="Post-view Conversions")
+        self.radio_clickconv = tkk.Radiobutton(self.window, text="Post-click Conversions", variable=self.metric_selection, value="Post-click Conversions")
+        self.radio_rev = tkk.Radiobutton(self.window, text="Revenue", variable=self.metric_selection, value="Revenue")
 
         # set position of metric selection
         self.radio_imp.grid(column=0, row=3)
@@ -56,15 +56,16 @@ class selection_widget():
         self.topN.grid(column=0, row=6)
 
         ## ad select button
-        self.select_button = tkk.Button(self.window, text='select',command=self.window.quit)
+        self.select_button = tkk.Button(self.window, text='select', command=self.window.quit())
         self.select_button.grid(column=0, row=7)
 
 
     def selected_metric(self):
+        #print(self.metric_selection.get())
         return self.chk_CTR_state.get(), self.chk_PVC_state.get(), self.metric_selection.get(), self.topN_var.get()
 
 
-program = selection_widget()
+program = Selection_widget()
 program.window.mainloop()
 program.selected_metric()
 
